@@ -6,5 +6,5 @@ def load(path):
     return np.array(img)
 
 def save(image, path):
-    img = Image.fromarray(image)
+    img = Image.fromarray(image.astype('uint8'), 'RGB')
     img.save(path)
