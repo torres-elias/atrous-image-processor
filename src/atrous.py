@@ -15,8 +15,13 @@ def atrous(img, kernel, rate, stride_h, stride_w):
     for i in range(offset_h, h - offset_h, stride_h):
         x = 0
         for j in range(offset_w, w - offset_w, stride_w):
-            for c in range(3):
-                img_out[y, x, c] = 255 # TODO: implementar correlação atrous
             
+            for c in range(3):
+                new_value = 0
+                for ki in range(kh):
+                    for kj in range(kw):
+                        new_value += img[i + ki - offset_h, j + kj - offset_w, c] * kernel[ki, kj]
+                img_out[y, x, c] = new_value
             x += 1
         y += 1
+    return img_out
