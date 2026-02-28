@@ -20,7 +20,10 @@ def atrous(img, kernel, rate, stride_h, stride_w):
                 new_value = 0
                 for ki in range(kh):
                     for kj in range(kw):
-                        new_value += img[i + ki - offset_h, j + kj - offset_w, c] * kernel[ki, kj]
+                        img_y = i + (ki * rate) - offset_h
+                        img_x = j + (kj * rate) - offset_w
+                        print(f"img_y: {img_y}, img_x: {img_x}")
+                        new_value += img[img_y, img_x, c] * kernel[ki, kj]
                 img_out[y, x, c] = new_value
             x += 1
         y += 1
