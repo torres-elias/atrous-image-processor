@@ -1,6 +1,6 @@
 import numpy as np
 
-def atrous(img, kernel, rate, stride_h, stride_w):
+def atrous(img, kernel, rate, stride_h, stride_w, activation):
     h, w = img.shape[0], img.shape[1]
     kh, kw = kernel.shape[0], kernel.shape[1]
     
@@ -22,9 +22,8 @@ def atrous(img, kernel, rate, stride_h, stride_w):
                     for kj in range(kw):
                         img_y = i + (ki * rate) - offset_h
                         img_x = j + (kj * rate) - offset_w
-                        print(f"img_y: {img_y}, img_x: {img_x}")
                         new_value += img[img_y, img_x, c] * kernel[ki, kj]
-                img_out[y, x, c] = new_value
+                img_out[y, x, c] = activation(new_value)
             x += 1
         y += 1
     return img_out
