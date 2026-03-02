@@ -1,0 +1,12 @@
+{   
+    "name": "sobel_vertical",
+    "kernel": [
+        [1, 0, -1],
+        [2, 0, -2],
+        [1, 0, -1]
+    ],
+    "stride_h": 1,
+    "stride_w": 1,
+    "rate": 2,
+    "activation": "identity"
+}
