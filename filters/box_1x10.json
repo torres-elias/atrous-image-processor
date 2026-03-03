@@ -1,0 +1,10 @@
+{   
+    "name": "box_1x10",
+    "kernel": [
+        [0.1, 0.1, 0.1, 0.1, 0,1, 0.1, 0.1, 0.1, 0.1, 0,1]
+    ],
+    "stride_h": 1,
+    "stride_w": 1,
+    "rate": 2,
+    "activation": "identity"
+}
