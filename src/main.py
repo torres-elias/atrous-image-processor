@@ -5,8 +5,8 @@ import activation
 import atrous
 import post_processing
 
-img = image_io.load("atrous-image-processor\\images\Shapes.png")
-params = parameters.read_parameters("atrous-image-processor\\filters\\sobel_horizontal.json")
+img = image_io.load("atrous-image-processor\\images\lena.tif")
+params = parameters.read_parameters("atrous-image-processor\\filters\\gaussiano5x5.json")
 
 kernel = np.array(params["kernel"])
 activations = {"relu": activation.relu, "identity": activation.identity}
@@ -22,4 +22,4 @@ if "gaussiano" in params["name"]:
     img_out = post_processing.gaussian(img_out)
 
 
-image_io.save(img_out, f"atrous-image-processor\\images_out\\Shapes_{params['name']}.png")
+image_io.save(img_out, f"atrous-image-processor\\images_out\\lena_{params['name']}.png")
