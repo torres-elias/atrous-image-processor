@@ -10,3 +10,10 @@ def histogram_expansion(img):
     img_out = (img - min_value) / (max_value - min_value) * 255
 
     return img_out
+
+
+def gaussian(img):
+
+    img_out = img/273
+    
+    return img_out
