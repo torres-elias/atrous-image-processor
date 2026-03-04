@@ -15,15 +15,11 @@ def atrous(img, kernel, rate, stride_h, stride_w, activation):
     for i in range(offset_h, h - offset_h, stride_h):
         x = 0
         for j in range(offset_w, w - offset_w, stride_w):
-            
             for c in range(3):
-                new_value = 0
-                for ki in range(kh):
-                    for kj in range(kw):
-                        img_y = i + (ki * rate) - offset_h
-                        img_x = j + (kj * rate) - offset_w
-                        new_value += img[img_y, img_x, c] * kernel[ki, kj]
-                img_out[y, x, c] = activation(new_value)
+                img_out[y, x, c] = activation(np.sum(img[i - offset_h:i - offset_h + ((kh - 1) * rate) + 1:rate, 
+                                              j - offset_w:j - offset_w + ((kw - 1) * rate) + 1:rate, 
+                                              c] 
+                                              * kernel))
             x += 1
         y += 1
     return img_out
